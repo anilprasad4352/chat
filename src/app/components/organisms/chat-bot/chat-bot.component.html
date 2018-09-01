@@ -1,0 +1,61 @@
+<div class="container chat-bot">
+    <div class="row chat-window col-xs-5 col-md-3" id="chat_window_1" style="margin-left:10px;">
+        <div class="col-xs-12 col-md-12">
+        	<div class="panel panel-default">
+                <div class="panel-heading top-bar">
+                    <div class="col-md-12 col-xs-12">
+                        <h3 class="panel-title"> LINA - ACCOUNTS PAYABLES BOT</h3>
+                    </div>
+                  
+                </div>
+                <div class="panel-body msg_container_base" id="msg_container_base">
+				{{uform}}
+				<div class="alert alert-danger" id="dangerelem" *ngIf="error"></div>
+				 <div class="row msg_container msg_sent_login" *ngIf="show == false">
+                        <div class="col-md-12 col-xs-12 center">
+						
+						<form (ngSubmit)="onSubmit()" >
+						<div class="input-group">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+    <input id="cc" type="text" class="form-control" required placeholder="Client Code">
+	
+  </div>
+                          <div class="input-group">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+    <input id="username" type="text" class="form-control" required placeholder="Username">
+
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+    <input id="password" type="password" class="form-control" required placeholder="Password">
+	
+  </div>
+  <div class="input-group">
+    <input id="submit" type="submit" class="btn btn-primary"  Value="Login">
+	
+  </div>
+  </form>
+  
+                        </div>
+                        
+                    </div>
+                   
+                   
+                   
+                    
+                    
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group" *ngIf="show">
+                        <input id="btn-input" type="text" class="form-control input-sm chat_input"    placeholder="Write your message here..." />
+                        <span class="input-group-btn">
+                        <button class="btn btn-primary btn-sm btn-round" (click)="onChatMe()" id="btn-chat">>></button>
+                        </span>
+                    </div>
+                </div>
+    		</div>
+        </div>
+    </div>
+    
+   
+</div>
