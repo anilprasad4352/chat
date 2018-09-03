@@ -9,7 +9,7 @@
                   
                 </div>
                 <div class="panel-body msg_container_base" id="msg_container_base">
-				{{uform}}
+				 <div id="msg_container_base1"><p></p></div>
 				<div class="alert alert-danger" id="dangerelem" *ngIf="error"></div>
 				 <div class="row msg_container msg_sent_login" *ngIf="show == false">
                         <div class="col-md-12 col-xs-12 center">
@@ -39,8 +39,14 @@
                         </div>
                         
                     </div>
-                   
-                   
+                  
+               
+				<div class="row msg_container base_receive" *ngIf="show1"  style="margin-top: 10px;"><div class="col-md-2 col-xs-2 avatar" style="padding: 0px;"><img src="https://steemitimages.com/DQmVyhQzqP7TF1SKuDWJkY3HuEGzv3ZpWGzLoJSAk42E81w/Theft-bots.jpg" class=" img-responsive "></div><div class="col-md-10 col-xs-10" style="padding: 0px;"> <div class="messages msg_receive" style=" background: white;padding-left: 5px;padding-right: 5px;border-radius: 2px;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);max-width: 100%;"><div class="input-group"><label for="Invoice Number">Invoice Number</label><input type="text" class="form-control" name="invoiceNumber" id="invoiceNumber" placeholder="Please Enter Invoice Number"></div><div class="input-group"><label for="Invoice Date">Invoice Date</label><input type="text" class="form-control" name="invoiceDate" id="invoiceDate" placeholder="Please Enter Invoice Date"></div><div class="input-group"><label for="Supplier Name">Supplier Name</label><input type="text" class="form-control" name="supplierName" id="supplierName" placeholder="Please Enter Supplier Name"></div><div class="input-group"><label for="Supplier Number">Supplier Number</label><input type="text" class="form-control" name="supplierNumber" id="supplierNumber" placeholder="Please Enter Supplier Number"></div><div class="input-group"><label for="GL Date">GL Date</label><input type="text" class="form-control" name="glDate" id="glDate" placeholder="Please Enter GL Date"></div><div class="input-group" style="width: 100%;text-align: center;padding-bottom: 7px;padding-top: 7px;"><button type="submit" class="btn btn-primary" (click)="onSmia()" role="button">Submit</button></div></div></div></div>
+					
+				 
+			
+				<div class="row msg_container base_receive" *ngIf="show2" style="margin-top: 10px;"><div class="col-md-2 col-xs-2 avatar" style="padding: 0px;"><img src="https://steemitimages.com/DQmVyhQzqP7TF1SKuDWJkY3HuEGzv3ZpWGzLoJSAk42E81w/Theft-bots.jpg" class=" img-responsive "></div><div class="col-md-10 col-xs-10" style="padding: 0px;"> <div class="messages msg_receive" style=" background: white;padding-left: 5px;padding-right: 5px;border-radius: 2px;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);max-width: 100%;"><div class="input-group"><label for="Payment Number">Payment Number</label><input type="text" class="form-control" name="paymentNumber" id="paymentNumber" placeholder="Please Enter Payment Number"></div><div class="input-group"><label for="Payment Date">Payment Date</label><input type="text" class="form-control" name="paymentDate" id="paymentDate" placeholder="Please Enter Payment Date"></div><div class="input-group"><label for="Invoice Number">Invoice Number</label><input type="text" class="form-control" name="invoiceNumberx" id="invoiceNumberx" placeholder="Please Enter Invoice Number"></div><div class="input-group" style="width: 100%;text-align: center;padding-bottom: 7px;padding-top: 7px;"><button type="submit" class="btn btn-primary" (click)="onSmid()" role="button">Submit</button></div></div></div></div>
+				
                    
                     
                     

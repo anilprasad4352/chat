@@ -4,10 +4,15 @@ import { HttpClient } from '@angular/common/http'
 
 export interface ChatBotObject {
   show : boolean;
+  show1 : boolean;
+  show2 : boolean;
   error : boolean;
   umsg : String ;
   uform : String ;
   uid : String ;
+  botmsg : String ;
+  showmeinvoiceamount: boolean;
+  showmepaymentdetails: boolean;
 }
 
 @Injectable()
@@ -21,10 +26,10 @@ export class ChatBotService {
 
 
   public get(url, options) {
-    return this.httpClient.get<ChatBotObject>(url, options)
+    return this.httpClient.get<any>(url, options)
   }
     public post(url, options) {
-    return this.httpClient.post<ChatBotObject>(url, options)
+    return this.httpClient.post<any>(url, options)
   }
 
 }
