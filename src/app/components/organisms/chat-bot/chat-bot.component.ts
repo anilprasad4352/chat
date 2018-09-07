@@ -11,14 +11,38 @@ export class ChatBotComponent implements OnInit {
 show : boolean = false;
 show1 : boolean = false;
 show2 : boolean = false;
+show3 : boolean = false;
+show4 : boolean = false;
 error : boolean = false;
 displayddl : String = 'none';
 displaydd2 : String = 'none';
 showmepaymentdetails : boolean = false;
 showmeinvoiceamount : boolean = false;
+x1 : any[] =[];
+x2 : any[]=[];
+x3 : any[]=[];
+x4 : any[]=[];
+
   constructor(private chatBotService: ChatBotService) { }
 
   ngOnInit() {
+	  let param={};
+	   this.chatBotService.get('https://my-json-server.typicode.com/deepaksoniskr15/kbjavaapp/getIntentDetails?key=showmeinvoiceamount',param).subscribe((data:  any) => {
+	    this.x1=data[0].textBoxLabelsAndMessages;
+		
+    }); 
+  this.chatBotService.get('https://my-json-server.typicode.com/deepaksoniskr15/kbjavaapp/getIntentDetails?key=showmepaymentdetails',param).subscribe((data:  any) => {
+	    this.x2=data[0].textBoxLabelsAndMessages;
+		
+    }); 
+this.chatBotService.get('https://my-json-server.typicode.com/deepaksoniskr15/kbjavaapp/getIntentDetails?key=showmepaymentdetailsTest',param).subscribe((data:  any) => {
+	    this.x3=data[0].textBoxLabelsAndMessages;
+		
+    });
+this.chatBotService.get('https://my-json-server.typicode.com/deepaksoniskr15/kbjavaapp/getIntentDetails?key=showmeinvoiceamountTest',param).subscribe((data:  any) => {
+	    this.x4=data[0].textBoxLabelsAndMessages;
+		
+    });	
   } 
  title = 'chat';
   umsg = this.umsg;
@@ -37,14 +61,30 @@ showmeinvoiceamount : boolean = false;
 	  document.getElementById('msg_container_base1').innerHTML = document.getElementById('msg_container_base1').innerHTML + this.uform;
 	
 	 this.smia = [];
-	 	
+	 	this.umsg=this.umsg.replace(/\s/g, "").toLowerCase();
 	 if(this.umsg == "showmepaymentdetails"){
          this.show2 =true; 
          this.show1 =false; 
+         this.show3 =false; 
+         this.show4 =false; 
 	 } 
 	  else if(this.umsg == "showmeinvoiceamount"){ 
          this.show1 =true; 
 		 this.show2 =false; 
+		 this.show3 =false; 
+		 this.show4 =false; 
+	
+	 }else if(this.umsg == "showmepaymentdetailstest"){ 
+         this.show1 =false; 
+		 this.show2 =false; 
+		 this.show3 =true; 
+		 this.show4 =false; 
+	
+	 }else if(this.umsg == "showmeinvoiceamounttest"){ 
+         this.show1 =false; 
+		 this.show2 =false; 
+		 this.show3 =false; 
+		 this.show4 =true; 
 	
 	 } else{
 		  let x2= '<div class="row msg_container base_receive" style="margin-top: 10px;"><div class="col-md-2 col-xs-2 avatar" style="padding: 0px;"><img src="https://steemitimages.com/DQmVyhQzqP7TF1SKuDWJkY3HuEGzv3ZpWGzLoJSAk42E81w/Theft-bots.jpg" class=" img-responsive "></div><div class="col-md-10 col-xs-10" style="padding: 0px;"> <div class="messages msg_receive" style=" background: white;padding-left: 5px;padding-right: 5px;border-radius: 2px;padding-top: 2px;padding-bottom: 2px;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);max-width: 100%;"><p>Unknown Command</p>';
@@ -59,13 +99,29 @@ showmeinvoiceamount : boolean = false;
 	 let invoiceDate = document.getElementById('invoiceDate') as HTMLInputElement;
 	 let supplierName = document.getElementById('supplierName') as HTMLInputElement;
 	 let glDate = document.getElementById('glDate') as HTMLInputElement;
-	let param={'invoiceNumber':invoiceNumber.value,'invoiceDate':invoiceDate.value,'supplierName':supplierName.value,'glDate':glDate.value};
+	 let inv='0';
+	 let ind='0';
+	 let sn='0';
+	 let gd='0';
+	 if(invoiceNumber != null){
+		inv = invoiceNumber.value;
+	}
+	if(invoiceDate != null){
+		ind = invoiceDate.value;
+	}
+	if(supplierName != null){
+		sn = supplierName.value;
+	}
+	if(glDate != null){
+		gd = glDate.value;
+	}
+	let param={'invoiceNumber':inv'invoiceDate':ind,'supplierName':sn,'glDate':gd};
 	
 	 this.error=false;
 	 
 	   this.chatBotService.get('https://my-json-server.typicode.com/deepaksoniskr15/kbjavaapp/getDataByParams',param).subscribe((data:  any) => {
 		   
-      let x2='<div class="row msg_container base_sent"><div class="messages msg_receive"><table class="table table-bordered table-striped table-condensed table-responsive" style="width:250px;font-size: 7.5px;"><thead><tr>';
+      let x2='<div class="row msg_container base_sent"><div class="messages msg_receive"><table class="table table-bordered table-striped table-condensed table-responsive" style="width:100%;font-size: 7.5px;"><thead><tr>';
 	   for(var i=0;i<7;i++){
 		   x2 += "<th>"+data.headers[0]+"</th>";
 	   }
@@ -88,6 +144,8 @@ showmeinvoiceamount : boolean = false;
 		document.getElementById('msg_container_base1').innerHTML = document.getElementById('msg_container_base1').innerHTML + x2;
 		this.show1 =false; 
 		 this.show2 =false;
+		 this.show3 =false;
+		 this.show4 =false;
     });
 	
 	
@@ -95,15 +153,27 @@ showmeinvoiceamount : boolean = false;
   public onSmid() { 
 	 let paymentNumber = document.getElementById('paymentNumber') as HTMLInputElement;
 	 let paymentDate = document.getElementById('paymentDate') as HTMLInputElement;
-	 let invoiceNumber = document.getElementById('invoiceNumberx') as HTMLInputElement;
+	 let invoiceNumber = document.getElementById('invoiceNumber') as HTMLInputElement;
+	let inv='0';
+	let pd='0';
+	let pn='0';
+	if(invoiceNumber != null){
+		inv = invoiceNumber.value;
+	}
+	if(paymentNumber != null){
+		pn = paymentNumber.value;
+	}
+	if(paymentDate != null){
+		pd = paymentDate.value;
+	}
 	
-	let param={'paymentNumber':paymentNumber.value,'paymentDate':paymentDate.value,'invoiceNumber':invoiceNumber.value};
+	let param={'paymentNumber':pn,'paymentDate':pd,'invoiceNumber':inv};
 	
 	 this.error=false;
 	 
 	   this.chatBotService.get('https://my-json-server.typicode.com/deepaksoniskr15/kbjavaapp/getDataByParams',param).subscribe((data:  any) => {
 		   
-      let x2='<div class="row msg_container base_sent"><div class="messages msg_receive"><table class="table table-bordered table-striped table-condensed table-responsive" style="width:250px;font-size: 7.5px;"><thead><tr>';
+      let x2='<div class="row msg_container base_sent"><div class="messages msg_receive"><table class="table table-bordered table-striped table-condensed table-responsive" style="width:100%;font-size: 7.5px;"><thead><tr>';
 	   for(var i=0;i<7;i++){
 		   x2 += "<th>"+data.headers[0]+"</th>";
 	   }
@@ -126,12 +196,15 @@ showmeinvoiceamount : boolean = false;
 		document.getElementById('msg_container_base1').innerHTML = document.getElementById('msg_container_base1').innerHTML + x2;
 		this.show1 =false; 
 		 this.show2 =false;
+		 this.show3 =false;
+		 this.show4 =false;
     });
  }
  public onSubmit() { 
 	 let cc = document.getElementById('cc') as HTMLInputElement;
 	 let uname = document.getElementById('username') as HTMLInputElement;
 	 let pwd = document.getElementById('password') as HTMLInputElement;
+	 
 	let param={'clientCode':cc.value,'userName':uname.value,'password':pwd.value};
 	
 	 this.error=false;
