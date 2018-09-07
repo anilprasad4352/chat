@@ -115,7 +115,7 @@ this.chatBotService.get('https://my-json-server.typicode.com/deepaksoniskr15/kbj
 	if(glDate != null){
 		gd = glDate.value;
 	}
-	let param={'invoiceNumber':inv'invoiceDate':ind,'supplierName':sn,'glDate':gd};
+	let param={'invoiceNumber':inv,'invoiceDate':ind,'supplierName':sn,'glDate':gd};
 	
 	 this.error=false;
 	 
